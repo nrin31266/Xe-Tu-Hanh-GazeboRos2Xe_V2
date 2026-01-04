@@ -8,7 +8,7 @@ class FinishDetector(Node):
     def __init__(self):
         super().__init__('finish_detector')
 
-        self.finish_x = 48.0
+        self.finish_x = 60
         self.reached = False
 
         self.create_subscription(
@@ -36,7 +36,7 @@ class FinishDetector(Node):
 
         if x >= self.finish_x and not self.reached:
             self.reached = True
-            self.get_logger().info('🎉🎉🎉 ĐÃ ĐẾN ĐÍCH - ĐANG DỪNG XE 🎉🎉🎉')
+            self.get_logger().info('🏁 Finish line reached! Stopping the robot.')
 
             # Publish stop ngay lập tức
             self.publish_stop()

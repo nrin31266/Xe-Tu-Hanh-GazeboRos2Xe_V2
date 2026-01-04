@@ -26,7 +26,7 @@ def generate_launch_description():
         arguments=[
             '-entity', 'my_car',
             '-file', car_sdf,
-            '-x', '0.0', '-y', '0.0', '-z', '0.25',
+            '-x', '55.0', '-y', '0.0', '-z', '0.25',
             '-Y', '0.0'
         ],
         output='screen'
@@ -40,14 +40,23 @@ def generate_launch_description():
         parameters=[{'use_sim_time': True}],
     )
 
+    finish_node = Node(
+        package='my_robot_controller',
+        executable='finish_detector',
+        name='finish_detector',
+        output='screen',
+        parameters=[{'use_sim_time': True}],
+    )
+
     return LaunchDescription([
         SetEnvironmentVariable('GAZEBO_MODEL_DATABASE_URI', ''),
         SetEnvironmentVariable('GAZEBO_MODEL_PATH', model_path),
 
         gazebo,
 
-        # giống "sleep 5 && spawn"
+        # đợi Gazebo lên rồi spawn xe
         TimerAction(period=5.0, actions=[spawn_car]),
 
         avoid_node,
+        finish_node,
     ])

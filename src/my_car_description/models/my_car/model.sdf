@@ -63,15 +63,15 @@
 
   <always_on>true</always_on>
   <visualize>true</visualize>
-  <update_rate>10</update_rate>
+  <update_rate>20</update_rate>
 
   <ray>
     <scan>
       <horizontal>
         <samples>120</samples>
         <resolution>1</resolution>
-        <min_angle>-0.261799</min_angle> <!-- -15 do -->
-        <max_angle>0.261799</max_angle> <!-- +15 do -->
+        <min_angle>-1.0472</min_angle> <!-- -60 do -->
+        <max_angle>1.0472</max_angle> <!-- +60 do -->
       </horizontal>
     </scan>
 
@@ -235,6 +235,7 @@
 
     <!-- ================== DIFF DRIVE (subscribe /cmd_vel) ================== -->
   <!-- ================== DIFF DRIVE (subscribe /cmd_vel) ================== -->
+       <!-- ================== DIFF DRIVE (subscribe /cmd_vel) ================== -->
     <plugin name="diff_drive" filename="libgazebo_ros_diff_drive.so">
       <ros>
         <namespace>/</namespace>
@@ -253,8 +254,11 @@
       <publish_odom>true</publish_odom>
       <publish_tf>true</publish_tf>
       <odom_frame>odom</odom_frame>
-      <base_frame>base_footprint</base_frame>
+
+      <!-- SỬA Ở ĐÂY: base_footprint không tồn tại trong model -->
+      <base_frame>base_link</base_frame>
     </plugin>
+
 
 
   </model>

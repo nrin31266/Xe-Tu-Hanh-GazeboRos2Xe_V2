@@ -215,7 +215,7 @@ class ObstacleAvoider(Node):
             if front < self.stop_dist:
                 # In ra để debug thuật toán rẽ trái/phải
                 self.get_logger().info(
-                    f"DECIDE: front={front:.2f} left={left:.2f} right={right:.2f}"
+                    f"HAS OBSTACLE AHEAD! front={front:.2f}, left={left:.2f}, right={right:.2f}"
                 )
 
                 # ===== Quy tắc chọn hướng né =====
