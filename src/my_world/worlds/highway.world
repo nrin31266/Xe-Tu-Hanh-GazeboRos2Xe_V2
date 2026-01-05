@@ -227,6 +227,14 @@
   </visual>
 </link></model>
 
-
+<gui fullscreen='0'>
+  <camera name='user_camera'>
+    <!-- X Y Z ROLL PITCH YAW -->
+    <!-- TAM DUONG: (35, 0), CAO LEN: Z=18, NHIN XUONG: PITCH=-1.57 -->
+    <pose>35 0 24 0 1.57 1.57</pose>
+  </camera>
+</gui>
   </world>
+  
+
 </sdf>

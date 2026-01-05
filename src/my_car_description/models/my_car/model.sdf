@@ -1,16 +1,16 @@
 <?xml version="1.0" ?>
 <sdf version="1.6">
   <model name="my_car">
-    <static>false</static>
+    <static>false</static> <!-- false => model có thể di chuyển -->
 
-    <!-- ================== BODY (big rectangle) ================== -->
+    <!-- ================== BASE LINK ================== -->
     <link name="base_link">
       <pose>0 0 0.18 0 0 0</pose> <!-- x y trong_tam roll pitch yaw -->
 
       <inertial>
-  <mass>10.0</mass>
+  <mass>10.0</mass> <!-- kg -->
   <inertia>
-    <ixx>0.8</ixx><iyy>1.0</iyy><izz>1.2</izz>
+    <ixx>0.8</ixx><iyy>1.0</iyy><izz>1.2</izz> <!-- MO MEN QUAN TINH -->
     <ixy>0</ixy><ixz>0</ixz><iyz>0</iyz>
   </inertia>
 </inertial>
@@ -43,7 +43,6 @@
   <!-- đặt đúng vị trí của sensor lidar -->
   <pose>0.30 0 0.18 0 0 0</pose>
 
-  <!-- chọn 1 hình đơn giản: cylinder hoặc box -->
   <geometry>
     <cylinder>
       <radius>0.03</radius>
@@ -81,7 +80,7 @@
       <resolution>0.01</resolution>
     </range>
 
-    <noise><!-- nhieu do -->
+    <noise> <!-- noise model -->
       <type>gaussian</type>
       <mean>0.0</mean>
       <stddev>0.0</stddev>
@@ -90,7 +89,6 @@
 
   <plugin name="gazebo_ros_laser" filename="libgazebo_ros_ray_sensor.so">
     <ros>
-      <!-- plugin này thường publish topic tên "out" -->
       <remapping>out:=/gazebo_ros_laser/out</remapping>
     </ros>
     <output_type>sensor_msgs/LaserScan</output_type>
@@ -101,7 +99,6 @@
     </link>
 
     <!-- ================== WHEELS ================== -->
-    <!-- QUAN TRỌNG: Link bánh KHÔNG xoay. Chỉ xoay visual/collision bằng pose 1.5708 0 0 -->
     <!-- radius=0.08 => tâm bánh đặt z ~ 0.10 -->
     <!-- y=±0.26 => wheel_separation=0.52 -->
 
@@ -232,10 +229,7 @@
       <child>rear_right_wheel</child>
       <axis><xyz>0 1 0</xyz></axis>
     </joint>
-
-    <!-- ================== DIFF DRIVE (subscribe /cmd_vel) ================== -->
-  <!-- ================== DIFF DRIVE (subscribe /cmd_vel) ================== -->
-       <!-- ================== DIFF DRIVE (subscribe /cmd_vel) ================== -->
+    <!-- ================== DIFF DRIVE PLUGIN ================== -->
     <plugin name="diff_drive" filename="libgazebo_ros_diff_drive.so">
       <ros>
         <namespace>/</namespace>
@@ -255,7 +249,6 @@
       <publish_tf>true</publish_tf>
       <odom_frame>odom</odom_frame>
 
-      <!-- SỬA Ở ĐÂY: base_footprint không tồn tại trong model -->
       <base_frame>base_link</base_frame>
     </plugin>
 

@@ -2,28 +2,22 @@ import rclpy
 from rclpy.node import Node
 from nav_msgs.msg import Odometry
 from geometry_msgs.msg import Twist
-
+from std_msgs.msg import Bool
 
 class FinishDetector(Node):
     def __init__(self):
         super().__init__('finish_detector')
 
-        self.finish_x = 60
+        self.finish_x = 70.0  # X COORDINATE OF FINISH LINE
         self.reached = False
 
-        self.create_subscription(
-            Odometry,
-            '/odom',
-            self.odom_callback,
-            10
-        )
+        self.create_subscription(Odometry, '/odom', self.odom_callback, 10)
 
         self.cmd_pub = self.create_publisher(Twist, '/cmd_vel', 10)
+        self.finish_pub = self.create_publisher(Bool, '/race_finished', 10)
 
-        # Timer sẽ được tạo khi tới đích để giữ lệnh stop liên tục
         self.stop_timer = None
-
-        self.get_logger().info('🚗 Finish detector started...')
+        self.get_logger().info('Finish detector started...')
 
     def publish_stop(self):
         cmd = Twist()
@@ -36,14 +30,16 @@ class FinishDetector(Node):
 
         if x >= self.finish_x and not self.reached:
             self.reached = True
-            self.get_logger().info('🏁 Finish line reached! Stopping the robot.')
+            self.get_logger().info('🏁 FINISH LINE REACHED')
 
-            # Publish stop ngay lập tức
+            flag = Bool()
+            flag.data = True
+            for _ in range(10):  # bắn vài phát cho chắc
+                self.finish_pub.publish(flag)
+
+            # vẫn publish stop để hỗ trợ (không bắt buộc)
             self.publish_stop()
-
-            # Và giữ stop liên tục (20Hz) để không bị node khác ghi đè
             self.stop_timer = self.create_timer(0.05, self.publish_stop)
-
 
 def main(args=None):
     rclpy.init(args=args)
@@ -52,7 +48,5 @@ def main(args=None):
     node.destroy_node()
     rclpy.shutdown()
 
-
 if __name__ == '__main__':
     main()
-

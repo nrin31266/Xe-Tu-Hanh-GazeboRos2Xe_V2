@@ -26,7 +26,7 @@ def generate_launch_description():
         arguments=[
             '-entity', 'my_car',
             '-file', car_sdf,
-            '-x', '55.0', '-y', '0.0', '-z', '0.25',
+            '-x', '0.0', '-y', '0.0', '-z', '0.25',
             '-Y', '0.0'
         ],
         output='screen'
