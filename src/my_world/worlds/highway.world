@@ -171,23 +171,23 @@
 <model name="goal_checker_24"><static>true</static><pose>70.5 -5.5 0.015 0 0 0</pose><link name="link"><visual name="visual"><geometry><box><size>1 1 0.005</size></box></geometry><material><ambient>0.95 0.95 0.95 1</ambient><diffuse>1 1 1 1</diffuse></material></visual></link></model>
 
     <!-- Obstacles: optimized for start at center lane (y = 0) -->
-<model name="obstacle_01"><static>true</static><pose>12  0.0 0.7 0 0 0</pose><link name="link">
+<model name="obstacle_01"><static>true</static><pose>12  1.0 0.7 0 0 0</pose><link name="link">
   <collision name="collision"><geometry><box><size>2.0 2.0 1.4</size></box></geometry></collision>
-  <visual name="visual"><geometry><box><size>2.0 2.0 1.4</size></box></geometry>
-    <material><ambient>1 0.2 0.6 1</ambient><diffuse>1 0.3 0.7 1</diffuse><specular>0.3 0.3 0.3 1</specular></material>
+  <visual name="visual"><geometry><box><size>2.0 4.0 1.4</size></box></geometry>
+    <material><ambient>1 0.2 0.6 1</ambient><diffuse>0.0 0.9 0.8 1</diffuse><specular>0.3 0.3 0.3 1</specular></material>
   </visual>
 </link></model>
 
 <model name="obstacle_02"><static>true</static><pose>19  4.0 0.7 0 0 0</pose><link name="link">
   <collision name="collision"><geometry><cylinder><radius>1.0</radius><length>1.4</length></cylinder></geometry></collision>
   <visual name="visual"><geometry><cylinder><radius>1.0</radius><length>1.4</length></cylinder></geometry>
-    <material><ambient>0.2 0.6 1 1</ambient><diffuse>0.3 0.7 1 1</diffuse><specular>0.3 0.3 0.3 1</specular></material>
+    <material><ambient>0.2 0.6 1 1</ambient><diffuse>0.5 1.0 0.8 1</diffuse><specular>0.3 0.3 0.3 1</specular></material>
   </visual>
 </link></model>
 
-<model name="obstacle_03"><static>true</static><pose>24 -4.0 0.7 0 0 0</pose><link name="link">
+<model name="obstacle_03"><static>true</static><pose>24 -3.0 0.7 0 0 0</pose><link name="link">
   <collision name="collision"><geometry><box><size>2.0 2.0 1.4</size></box></geometry></collision>
-  <visual name="visual"><geometry><box><size>2.0 2.0 1.4</size></box></geometry>
+  <visual name="visual"><geometry><box><size>2.0 3.0 1.4</size></box></geometry>
     <material><ambient>0.7 0.2 0.9 1</ambient><diffuse>0.8 0.3 1 1</diffuse><specular>0.3 0.3 0.3 1</specular></material>
   </visual>
 </link></model>

@@ -159,7 +159,7 @@ class ObstacleAvoider(Node):
             self.lane_yaw = self.yaw
             self.lane_center_y = self.y
             self.have_odom = True
-            self.get_logger().info("LANE LOCK")
+            self.get_logger().info("ODOM RECEIVED -> READY")
 
     def sector_min(self, msg, deg_min, deg_max):
         a_min = math.radians(deg_min)
@@ -230,7 +230,7 @@ class ObstacleAvoider(Node):
             cmd.angular.z = self.yaw_control_hold(self.lane_yaw)
 
             if front < self.stop_dist:
-                self.get_logger().info(f"OBS F {front:.2f} L {left:.2f} R {right:.2f}")
+                self.get_logger().info(f"OBS [FRONT: {front:.2f}, L: {left:.2f}, R: {right:.2f}]")
 
                 # CHON HUONG THEO KHOANG TRONG
                 eps = 0.05
