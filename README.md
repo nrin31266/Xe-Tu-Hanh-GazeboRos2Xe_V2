@@ -61,7 +61,7 @@ check_dependencies.sh              # kiểm tra dependency
 ./run_project.sh autopilot.launch.py
 ```
 
-## Bonus: lệnh ROS 2 để xem topic
+## Lệnh ROS 2 để xem topic
 
 ```
 ros2 topic list

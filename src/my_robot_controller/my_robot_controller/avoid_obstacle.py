@@ -29,9 +29,11 @@ class ObstacleAvoider(Node):
     def __init__(self):
         super().__init__("obstacle_avoider")
 
-        self.cmd_pub = self.create_publisher(Twist, "/cmd_vel", 10)  # PUBLISH CMD_VEL TO MOVE THE ROBOT
+        self.cmd_pub = self.create_publisher(Twist, # Type of message: linear.x → chạy tới / lùi, angular.z → quẹo trái / phải,
+                                              "/cmd_vel",
+                                                10)  # Số message tối đa được giữ trong hàng đợi
         self.scan_sub = self.create_subscription(LaserScan, "/gazebo_ros_laser/out", self.scan_cb, 10)  # SUBSCRIBE LASER SCAN
-        self.odom_sub = self.create_subscription(Odometry, "/odom", self.odom_cb, 10)  # SUBSCRIBE ODOMETRY: GET POSITION + YAW(HEADING)
+        self.odom_sub = self.create_subscription(Odometry, "/odom", self.odom_cb, 10)  # Cung cấp: position (x, y), orientation (yaw), velocity (vx, wz)
         self.finish_sub = self.create_subscription(Bool, "/race_finished", self.finish_cb, 10)  # SUBSCRIBE FINISH FLAG
 
         # SPEED
@@ -53,8 +55,8 @@ class ObstacleAvoider(Node):
 
         # LANE LIMIT (ODOM Y)
         self.lane_center_y = 0.0
-        self.lane_half_width = 2.00 # BAN RONG LANE
-        self.lane_margin = 0.25    # BIEN CACH LANE
+        self.lane_half_width = 2.00 # BAN KINH CUA LANE
+        self.lane_margin = 0.25    # KHOANG CACH TOI DA DEN BIEN LANE
         self.side_pass_target = self.side_pass_dist
 
         # STATE

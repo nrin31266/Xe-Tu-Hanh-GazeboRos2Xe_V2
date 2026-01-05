@@ -112,7 +112,7 @@
         <geometry><cylinder><radius>0.08</radius><length>0.05</length></cylinder></geometry>
         <surface>
           <friction>
-            <ode><mu>1.0</mu><mu2>1.0</mu2></ode>
+            <ode><mu>1.0</mu><mu2>1.0</mu2></ode> <!-- hệ số ma sát -->
           </friction>
         </surface>
       </collision>
@@ -255,4 +255,4 @@
 
 
   </model>
-</sdf> 
+</sdf>
